@@ -1,18 +1,18 @@
-package de.librarium.common.fetching.goodreads
+package de.ialistannen.librarium.common.fetching.goodreads
 
-import de.librarium.common.Author
-import de.librarium.common.Book
-import de.librarium.common.BookMetadata
-import de.librarium.common.fetching.HttpFetcher
-import de.librarium.common.fetching.Webclient
-import de.librarium.common.util.toLocale
+import de.ialistannen.librarium.common.Author
+import de.ialistannen.librarium.common.Book
+import de.ialistannen.librarium.common.BookMetadata
+import de.ialistannen.librarium.common.fetching.HttpFetcher
+import de.ialistannen.librarium.common.fetching.Webclient
+import de.ialistannen.librarium.common.util.toLocale
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.time.LocalDateTime
 import java.util.*
 
 /**
- * A [BookFetcher](de.librarium.common.fetching.BookFetcher) that fetches books from
+ * A [BookFetcher](de.ialistannen.librarium.common.fetching.BookFetcher) that fetches books from
  * [Goodreads](https://goodreads.com)].
  */
 class GoodreadsFetcher(webclient: Webclient) : HttpFetcher(webclient) {

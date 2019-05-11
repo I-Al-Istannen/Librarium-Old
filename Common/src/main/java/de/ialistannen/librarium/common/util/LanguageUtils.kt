@@ -1,4 +1,4 @@
-package de.librarium.common.util
+package de.ialistannen.librarium.common.util
 
 import java.util.*
 

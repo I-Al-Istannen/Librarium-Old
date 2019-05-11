@@ -1,7 +1,7 @@
-package de.librarium.common.fetching
+package de.ialistannen.librarium.common.fetching
 
-import de.librarium.common.Book
-import de.librarium.common.BookMetadata
+import de.ialistannen.librarium.common.Book
+import de.ialistannen.librarium.common.BookMetadata
 
 /**
  * A fetcher for [Book]s.

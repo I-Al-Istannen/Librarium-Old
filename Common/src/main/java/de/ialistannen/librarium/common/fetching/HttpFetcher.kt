@@ -1,4 +1,4 @@
-package de.librarium.common.fetching
+package de.ialistannen.librarium.common.fetching
 
 import org.jsoup.nodes.Document
 

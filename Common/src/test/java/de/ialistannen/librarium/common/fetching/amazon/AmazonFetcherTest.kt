@@ -1,20 +1,21 @@
-package de.librarium.common.fetching.goodreads
+package de.ialistannen.librarium.common.fetching.amazon
 
-import de.librarium.common.Author
-import de.librarium.common.Book
-import de.librarium.common.fetching.JsoupHttpClient
+import de.ialistannen.librarium.common.Author
+import de.ialistannen.librarium.common.Book
+import de.ialistannen.librarium.common.fetching.JsoupHttpClient
+import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers.hasItem
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.util.*
 
-internal class GoodreadsFetcherTest {
-
-    private lateinit var fetcher: GoodreadsFetcher
+internal class AmazonFetcherTest {
+    private lateinit var fetcher: AmazonFetcher
 
     @BeforeEach
     internal fun setUp() {
-        fetcher = GoodreadsFetcher(JsoupHttpClient())
+        fetcher = AmazonFetcher(JsoupHttpClient())
     }
 
     @Test
@@ -24,12 +25,12 @@ internal class GoodreadsFetcherTest {
         val expectedBook = Book(
             UUID(0, 0),
             listOf(Author("Charlotte Roth")),
-            "Weil sie das Leben liebten",
+            "Weil sie das Leben liebten: Roman",
             "Berlin Ende der 1920er Jahre: Die junge Franka hat nur einen Wunsch – sie möchte Zoologie studieren. Ihre strengen Eltern und die Weltwirtschaftskrise machen ihren Traum zunichte, doch immerhin gelingt es ihr, eine Stelle als Tierpflegerin im Berliner Zoo zu bekommen. Die Arbeit mit den geliebten Tieren geht ihr über alles, ihnen schenkt sie ihre ganze Liebe – nicht den Menschen. Nur ganz allmählich fasst sie Zutrauen zu dem Tierarzt Carl, der vom Leben ähnlich gebeutelt wurde wie sie. Dann lernt sie den faszinierenden Adam kennen und lieben. Doch Adam ist Sinti, und inzwischen haben die Nazis die Macht in Deutschland ergriffen. Adams Leben ist in höchster Gefahr, und Franka ist bereit, für ihn zu kämpfen – und für ihre Tiere. Fortan weiß sie nicht mehr, wem sie trauen kann …",
             "9783426517291",
             Locale.GERMAN,
             512,
-            "Paperback"
+            "Broschiert"
         )
 
         assertEquals(
@@ -38,11 +39,11 @@ internal class GoodreadsFetcherTest {
         )
 
         assertEquals(
-            "goodreads",
+            "amazon",
             bookMetadata.fetcherId
         )
         assertEquals(
-            "https://www.goodreads.com/book/show/30312506-weil-sie-das-leben-liebten",
+            "https://www.amazon.de/Weil-sie-das-Leben-liebten/dp/3426517299",
             bookMetadata.fetchedUrl
         )
         assertEquals(
@@ -56,8 +57,8 @@ internal class GoodreadsFetcherTest {
         val search = fetcher.search("9783426517291")
 
         assertEquals(
-            search,
-            listOf("https://www.goodreads.com/book/show/30312506-weil-sie-das-leben-liebten")
+            listOf("https://www.amazon.de/Weil-sie-das-Leben-liebten/dp/3426517299"),
+            search
         )
     }
 
@@ -65,11 +66,10 @@ internal class GoodreadsFetcherTest {
     internal fun searchByName() {
         val search = fetcher.search("Weil sie das Leben liebten")
 
-        assertEquals(
+        assertThat(
             search,
-            listOf(
-                "https://www.goodreads.com/book/show/30312506-weil-sie-das-leben-liebten?from_search=true",
-                "https://www.goodreads.com/book/show/44420860-weil-sie-das-leben-liebten?from_search=true"
+            hasItem(
+                "https://www.amazon.de/Weil-sie-das-Leben-liebten/dp/3426517299"
             )
         )
     }
@@ -83,5 +83,6 @@ internal class GoodreadsFetcherTest {
             emptyList<String>()
         )
     }
+
 
 }

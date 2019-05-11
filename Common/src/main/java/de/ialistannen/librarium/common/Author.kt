@@ -1,4 +1,4 @@
-package de.librarium.common
+package de.ialistannen.librarium.common
 
 /**
  * An author that might write books.

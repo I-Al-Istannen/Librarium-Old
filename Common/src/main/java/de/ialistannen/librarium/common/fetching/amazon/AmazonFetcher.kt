@@ -1,11 +1,11 @@
-package de.librarium.common.fetching.amazon
+package de.ialistannen.librarium.common.fetching.amazon
 
-import de.librarium.common.Author
-import de.librarium.common.Book
-import de.librarium.common.BookMetadata
-import de.librarium.common.fetching.HttpFetcher
-import de.librarium.common.fetching.Webclient
-import de.librarium.common.util.toLocale
+import de.ialistannen.librarium.common.Author
+import de.ialistannen.librarium.common.Book
+import de.ialistannen.librarium.common.BookMetadata
+import de.ialistannen.librarium.common.fetching.HttpFetcher
+import de.ialistannen.librarium.common.fetching.Webclient
+import de.ialistannen.librarium.common.util.toLocale
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.lang.Character.isDigit
