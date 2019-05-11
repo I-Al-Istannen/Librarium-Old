@@ -4,16 +4,15 @@ import de.librarium.common.Author
 import de.librarium.common.Book
 import de.librarium.common.BookMetadata
 import de.librarium.common.fetching.HttpFetcher
-import de.librarium.common.fetching.JsoupHttpClient
 import de.librarium.common.fetching.Webclient
-import de.librarium.common.toLocale
+import de.librarium.common.util.toLocale
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.time.LocalDateTime
 import java.util.*
 
 /**
- * A [de.librarium.common.fetching.BookFetcher] that fetches books from
+ * A [BookFetcher](de.librarium.common.fetching.BookFetcher) that fetches books from
  * [Goodreads](https://goodreads.com)].
  */
 class GoodreadsFetcher(webclient: Webclient) : HttpFetcher(webclient) {

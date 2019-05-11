@@ -8,6 +8,7 @@ import de.librarium.common.fetching.Webclient
 import de.librarium.common.util.toLocale
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
+import java.lang.Character.isDigit
 import java.time.LocalDateTime
 import java.util.*
 
@@ -33,7 +34,7 @@ class AmazonFetcher(webclient: Webclient) : HttpFetcher(webclient) {
         val isbn = getFromDetails(
             document,
             { it.contains("ISBN-13") },
-            { it.split(":").last().trim() }
+            { it.split(":").last().filter(::isDigit) }
         )
         val authors = getAuthors(document)
         val description = getDescription(document)
@@ -55,7 +56,7 @@ class AmazonFetcher(webclient: Webclient) : HttpFetcher(webclient) {
         val imageUrl = getImageUrl(document)
 
         return BookMetadata(
-            book, imageUrl, document.baseUri(), "amazon", LocalDateTime.now()
+            book, imageUrl, cleanUrl(document.baseUri()), "amazon", LocalDateTime.now()
         )
     }
 
@@ -123,9 +124,14 @@ class AmazonFetcher(webclient: Webclient) : HttpFetcher(webclient) {
                         "/dp/" in link.attr("href")
                     }
                     .map { link -> link.absUrl("href") }
+                    .map(::cleanUrl)
                     .take(1)
             }
             .toList()
+    }
+
+    private fun cleanUrl(url: String): String {
+        return url.replace("/dp/(\\d+).+".toRegex(), "/dp/$1")
     }
 
 }
