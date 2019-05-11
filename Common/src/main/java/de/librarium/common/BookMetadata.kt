@@ -1,8 +1,6 @@
 package de.librarium.common
 
 import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 
 /**
  * Stores metadata about a book and the fetcher used to fetch it.
