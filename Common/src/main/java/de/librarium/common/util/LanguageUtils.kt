@@ -1,4 +1,4 @@
-package de.librarium.common
+package de.librarium.common.util
 
 import java.util.*
 

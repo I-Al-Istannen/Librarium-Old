@@ -5,7 +5,7 @@ import de.librarium.common.Book
 import de.librarium.common.BookMetadata
 import de.librarium.common.fetching.HttpFetcher
 import de.librarium.common.fetching.Webclient
-import de.librarium.common.toLocale
+import de.librarium.common.util.toLocale
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import java.time.LocalDateTime
