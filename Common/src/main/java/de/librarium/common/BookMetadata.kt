@@ -1,6 +1,8 @@
 package de.librarium.common
 
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 
 /**
  * Stores metadata about a book and the fetcher used to fetch it.
@@ -17,4 +19,24 @@ data class BookMetadata(
     val fetchedUrl: String,
     val fetcherId: String,
     val fetchTime: LocalDateTime
-)
+) {
+
+    /**
+     * Converts this book to an unspecified "pretty" human-readable format string.
+     *
+     * @return this book in an unspecified "pretty" human-readable format
+     */
+    fun toPrettyString(): String {
+        return """
+            |Image url   : $imageUrl
+            |Fetched url : $fetchedUrl
+            |Fetcher id  : $fetcherId
+            |Fetch time  : $fetchTime
+            |
+            |==== Book ====
+            |
+            |${book.toPrettyString()}
+        """.trimMargin("|")
+    }
+
+}

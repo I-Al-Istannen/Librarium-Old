@@ -14,4 +14,23 @@ data class Book(
     val language: Locale,
     val pages: Int,
     val edition: String
-)
+) {
+
+    /**
+     * Converts this book to an unspecified "pretty" human-readable format string.
+     *
+     * @return this book in an unspecified "pretty" human-readable format
+     */
+    fun toPrettyString(): String {
+        return """
+            ID          : $id
+            Authors     : $authors
+            Title       : $title
+            ISBN        : $isbn
+            Language    : $language
+            Pages       : $pages
+            Edition     : $edition
+            Description : $description
+        """.trimIndent()
+    }
+}
